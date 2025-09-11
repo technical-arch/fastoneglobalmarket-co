@@ -20,6 +20,9 @@ const DepositFund = () => {
   const HYLO_API = import.meta.env.VITE_HYLO_API || "https://apiuae.hylo.biz/Api/v1.0/Payment";
   const HYLO_REDIRECT_BASE = import.meta.env.VITE_HYLO_REDIRECT_BASE || "https://fastoneglobalmarkets.co/payment-confirmation";
 
+  // ✅ **ADDED**: Backend API Base URL from environment variables
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const { method } = queryString.parse(window.location.search);
     if (method === "card") {
@@ -100,8 +103,16 @@ const DepositFund = () => {
       return;
     }
 
+    // ✅ **ADDED**: Check if the API base URL is configured
+    if (!API_BASE_URL) {
+      setUpiError("API URL is not configured. Please contact support.");
+      setUpiLoading(false);
+      return;
+    }
+
     try {
-      const response = await axios.post("/api/create-order", {
+      // ✅ **CHANGED**: Using the full, absolute URL to your backend
+      const response = await axios.post(`${API_BASE_URL}/api/create-order`, {
         amount,
         email,
         accountNumber,
