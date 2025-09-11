@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/deposit-fund", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
