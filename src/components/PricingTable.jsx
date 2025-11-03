@@ -61,7 +61,7 @@ const PricingTable = () => {
     {
       title: 'Standard',
       initialDeposit: '$100',
-      leverage: 'Upto 1:500',
+      leverage: 'Upto 1:300',
       charges: ['All inclusive spread', 'Currency spread from 1.2', 'Gold spread from 25 cents'],
       tradeSize: '0.01 Lot',
       platform: 'MT4',
